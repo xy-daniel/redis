@@ -9,13 +9,21 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloController {
 
+//    @Autowired
+//    StringRedisTemplate stringRedisTemplate;
+
+    //set方法坠入变量
+    private StringRedisTemplate stringRedisTemplate;
+
     @Autowired
-    StringRedisTemplate stringRedisTemplate;
+    public void setStringRedisTemplate(StringRedisTemplate stringRedisTemplate){
+        this.stringRedisTemplate = stringRedisTemplate;
+    }
 
     @GetMapping("/set")
     public void set(){
         ValueOperations<String, String> opsForValue = stringRedisTemplate.opsForValue();
-        opsForValue.set("name", "dingdaiguang");
+        opsForValue.set("name", "DDG");
     }
 
     @GetMapping("/get")
